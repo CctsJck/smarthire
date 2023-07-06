@@ -3,6 +3,7 @@ package com.smarthire.project.service.SearchService;
 import com.smarthire.project.mappers.SearchMapper;
 import com.smarthire.project.model.dto.SearchRequest;
 import com.smarthire.project.model.dto.SearchResponse;
+import com.smarthire.project.model.dto.SearchUpdateRequest;
 import com.smarthire.project.model.entity.Search;
 import com.smarthire.project.repository.SearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ public class SearchServiceImpl implements SearchService {
     private SearchService searchService;
     private final SearchMapper searchMapper = SearchMapper.INSTANCE;
 
-
     @Override
     public SearchResponse save(SearchRequest searchRequest) {
         Search search = searchMapper.searchRequestToSearch(searchRequest);
@@ -26,13 +26,15 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public SearchResponse update(SearchRequest searchRequest) {
-        return null;
+    public SearchResponse update(SearchUpdateRequest searchUpdateRequest) {
+        Search searchEntity = searchRepository.save(searchMapper.searchUpdateRequestToSearch(searchUpdateRequest));
+        return searchMapper.searchToSearchResponse(searchEntity);
     }
 
     @Override
     public void delete(Long id) {
-
+        Search search= this.findById(id);
+        searchRepository.delete(search);
     }
 
     @Override
