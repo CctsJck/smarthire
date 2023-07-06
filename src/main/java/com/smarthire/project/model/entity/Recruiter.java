@@ -16,10 +16,11 @@ public class Recruiter {
     private String surename;
     private String username;
     private String email;
+    private String pass;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "recruiter_id")
-    private List<Search> searchs;
+    private List<Search> searches;
 
 
 
