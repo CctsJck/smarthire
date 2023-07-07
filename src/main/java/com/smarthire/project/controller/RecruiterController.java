@@ -21,4 +21,8 @@ public class RecruiterController {
     public ResponseEntity<RecuiterResponse> createAccount(@RequestBody RecruiterRequest recruiterRequest){
         return new ResponseEntity<>(recruiterService.createAccount(recruiterRequest), HttpStatus.OK);
     }
+    @PutMapping("/")
+    public ResponseEntity<RecuiterResponse> update(@RequestBody RecruiterRequest recruiterRequest){
+        return new ResponseEntity<>(recruiterService.update(recruiterRequest), HttpStatus.OK);
+    }
 }

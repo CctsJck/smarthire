@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RecruiterRepository extends JpaRepository<Recruiter,Long> {
 
-    Recruiter findByUsername(String user);
+    Recruiter findByUsername(String username);
+    boolean existsByEmail(String email);
+    boolean existsByUsername(String username);
 
 
 
