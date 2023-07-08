@@ -41,6 +41,7 @@ public class RecruiterServiceImpl implements RecruiterService{
         }else {
             log.info("id recruiter"+recruiter.getId());
             recruiter = recruiterRepository.save(recruiter);
+            log.info("id recruiter desp save"+recruiter.getId());
             log.info("id del mapper: "+recruiterMapper.recruiterToRecruiterResponse(recruiter).getId());
             log.info("recruiter creado correctamente");
             return recruiterMapper.recruiterToRecruiterResponse(recruiter);
@@ -63,10 +64,10 @@ public class RecruiterServiceImpl implements RecruiterService{
         recruiter.getSearches().add(search);
         log.info("id search es"+search.getId());
         recruiterRepository.save(recruiter);
-        searchRepository.save(search);
+        //searchRepository.save(search);
         log.info("Se creo la busqueda correctamente");
         log.info("Id del search mapeado es:" +searchMapper.searchToSearchResponse(search).getId());
-        return searchMapper.searchToSearchResponse(search);
+        return searchMapper.searchToSearchResponse(recruiter.getSearches().get(recruiter.getSearches().size()-1));
     }
 
 

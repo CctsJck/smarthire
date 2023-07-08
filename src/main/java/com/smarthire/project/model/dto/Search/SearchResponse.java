@@ -14,13 +14,8 @@ import java.util.List;
 public class SearchResponse {
 
     private long id;
-    @NotBlank(message = "ingrese un nombre de busqueda")
     private String name;
-
-    @NotBlank(message = "ingrese una descripcion")
     private String description;
-
-    @NotNull(message = "Introducir una fecha válida")
     private LocalDateTime endDate;
 
     private List<QuestionResponse> questions;
