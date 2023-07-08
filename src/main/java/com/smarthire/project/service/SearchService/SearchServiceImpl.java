@@ -1,5 +1,6 @@
 package com.smarthire.project.service.SearchService;
 
+import com.smarthire.project.exception.SearchNotFoundException;
 import com.smarthire.project.mapper.SearchMapper;
 import com.smarthire.project.model.dto.Search.SearchRequest;
 import com.smarthire.project.model.dto.Search.SearchResponse;
@@ -41,7 +42,8 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public Search findById(Long id) {
-        return null;
+        return searchRepository.findById(id)
+                .orElseThrow(() -> new SearchNotFoundException("Search not found with ID " + id));
     }
 
     @Override

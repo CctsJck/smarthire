@@ -11,6 +11,7 @@ public class Search {
 
     @Id @GeneratedValue
     private long id;
+
     private String name;
     private String description;
     private LocalDateTime endDate;

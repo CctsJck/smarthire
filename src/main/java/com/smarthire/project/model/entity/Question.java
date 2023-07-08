@@ -2,9 +2,7 @@ package com.smarthire.project.model.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,4 +20,7 @@ public class Question {
     private String picture;
     private String video;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "search_id")
+    private Search search;
 }

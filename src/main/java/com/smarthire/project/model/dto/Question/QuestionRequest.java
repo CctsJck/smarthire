@@ -17,4 +17,7 @@ public class QuestionRequest {
     private String type;
     private String picture;
     private String video;
+
+    @NotBlank(message = "id de la busqueda necesario")
+    private long idSearch;
 }

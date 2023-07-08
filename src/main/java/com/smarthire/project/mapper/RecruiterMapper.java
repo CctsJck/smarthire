@@ -4,7 +4,6 @@ import com.smarthire.project.model.dto.Recruiter.RecruiterRequest;
 import com.smarthire.project.model.dto.Recruiter.RecuiterResponse;
 import com.smarthire.project.model.entity.Recruiter;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
