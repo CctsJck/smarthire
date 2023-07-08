@@ -1,9 +1,9 @@
 package com.smarthire.project.controller;
 
-import com.smarthire.project.model.dto.SearchRequest;
-import com.smarthire.project.model.dto.SearchResponse;
-import com.smarthire.project.model.dto.SearchUpdateRequest;
-import com.smarthire.project.repository.SearchRepository;
+import com.smarthire.project.model.dto.Search.SearchRequest;
+import com.smarthire.project.model.dto.Search.SearchResponse;
+import com.smarthire.project.model.dto.Search.SearchUpdateRequest;
+import com.smarthire.project.service.RecruiterService.RecruiterService;
 import com.smarthire.project.service.SearchService.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,12 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
+    @Autowired
+    private RecruiterService recruiterService;
+
     @PostMapping("/")
     public ResponseEntity<SearchResponse> save(@RequestBody SearchRequest searchRequest){
-        return  new ResponseEntity<>(searchService.save(searchRequest), HttpStatus.OK);
+        return new ResponseEntity<>(recruiterService.saveSearch(searchRequest), HttpStatus.OK);
     }
 
     @PutMapping("/")

@@ -1,15 +1,13 @@
 package com.smarthire.project.service.SearchService;
 
-import com.smarthire.project.mappers.SearchMapper;
-import com.smarthire.project.model.dto.SearchRequest;
-import com.smarthire.project.model.dto.SearchResponse;
-import com.smarthire.project.model.dto.SearchUpdateRequest;
+import com.smarthire.project.mapper.SearchMapper;
+import com.smarthire.project.model.dto.Search.SearchRequest;
+import com.smarthire.project.model.dto.Search.SearchResponse;
+import com.smarthire.project.model.dto.Search.SearchUpdateRequest;
 import com.smarthire.project.model.entity.Search;
 import com.smarthire.project.repository.SearchRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

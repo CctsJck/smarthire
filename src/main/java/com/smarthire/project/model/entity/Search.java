@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
@@ -14,7 +13,7 @@ public class Search {
     private long id;
     private String name;
     private String description;
-    private Date endDate;
+    private LocalDateTime endDate;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "search_id")

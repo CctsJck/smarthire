@@ -1,6 +1,6 @@
-package com.smarthire.project.model.dto;
+package com.smarthire.project.model.dto.Search;
 
-import com.smarthire.project.model.entity.Question;
+import com.smarthire.project.model.dto.Question.QuestionUpdateRequest;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -9,10 +9,16 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
-public class SearchResponse {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class SearchUpdateRequest {
 
+    @NotBlank(message = "Id de la busqueda necesario")
     private long id;
+
     @NotBlank(message = "ingrese un nombre de busqueda")
     private String name;
 
@@ -20,8 +26,8 @@ public class SearchResponse {
     private String description;
 
     @NotNull(message = "Introducir una fecha válida")
-    private Date endDate;
+    private LocalDateTime endDate;
 
-    private List<QuestionRequest> questions;
+    private List<QuestionUpdateRequest> questions;
 
 }

@@ -1,8 +1,8 @@
-package com.smarthire.project.mappers;
+package com.smarthire.project.mapper;
 
-import com.smarthire.project.model.dto.SearchRequest;
-import com.smarthire.project.model.dto.SearchResponse;
-import com.smarthire.project.model.dto.SearchUpdateRequest;
+import com.smarthire.project.model.dto.Search.SearchRequest;
+import com.smarthire.project.model.dto.Search.SearchResponse;
+import com.smarthire.project.model.dto.Search.SearchUpdateRequest;
 import com.smarthire.project.model.entity.Search;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

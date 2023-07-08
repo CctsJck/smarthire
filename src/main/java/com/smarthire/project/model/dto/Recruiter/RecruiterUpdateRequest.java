@@ -1,20 +1,16 @@
 package com.smarthire.project.model.dto.Recruiter;
 
-import com.smarthire.project.model.dto.Search.SearchRequest;
-import com.smarthire.project.model.entity.Search;
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RecruiterRequest {
-
+public class RecruiterUpdateRequest {
+    @NotBlank(message = "ID del recruiter necesario")
+    private Long id;
     @NotBlank(message = "Ingrese su nombre")
     private String name;
     @NotBlank(message = "Ingrese su apellido")
@@ -25,10 +21,4 @@ public class RecruiterRequest {
     private String email;
     @NotBlank(message = "Contraseña necesaria")
     private String pass;
-    private List<SearchRequest> searches;
-
-
-
-
-
 }

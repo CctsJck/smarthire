@@ -1,5 +1,6 @@
 package com.smarthire.project.model.dto.Recruiter;
 
+import com.smarthire.project.model.dto.Search.SearchResponse;
 import com.smarthire.project.model.entity.Search;
 import lombok.*;
 
