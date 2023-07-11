@@ -20,7 +20,7 @@ public class Question {
     private String picture;
     private String video;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "search_id")
     private Search search;
 }

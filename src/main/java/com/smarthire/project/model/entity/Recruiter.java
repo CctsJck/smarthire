@@ -18,8 +18,7 @@ public class Recruiter {
     private String email;
     private String pass;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "recruiter_id")
+    @OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Search> searches;
 
 

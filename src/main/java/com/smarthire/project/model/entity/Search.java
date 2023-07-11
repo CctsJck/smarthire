@@ -16,8 +16,11 @@ public class Search {
     private String description;
     private LocalDateTime endDate;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "search_id")
+    @ManyToOne
+    @JoinColumn(name = "recruiter_id")
+    private Recruiter recruiter;
+
+    @OneToMany(mappedBy = "search",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
 
 }
