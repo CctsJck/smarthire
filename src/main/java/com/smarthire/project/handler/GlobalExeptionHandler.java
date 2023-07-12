@@ -1,5 +1,6 @@
 package com.smarthire.project.handler;
 
+import com.smarthire.project.exception.UserNotFoundException;
 import com.smarthire.project.exception.UserNotUniqueException;
 import com.smarthire.project.model.dto.ExceptionResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,11 @@ public class GlobalExeptionHandler {
                 .message(ex.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build(), HttpStatus.OK);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(Exception e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
     }
 
 

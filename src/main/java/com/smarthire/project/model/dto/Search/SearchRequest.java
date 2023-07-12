@@ -31,8 +31,8 @@ public class SearchRequest {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime endDate;
 
-    @NotBlank(message = "username del recruiter necesario")
-    private String username;
+    @NotBlank(message = "id del recruiter necesario")
+    private long userId;
 
     private List<QuestionRequest> questions;
 

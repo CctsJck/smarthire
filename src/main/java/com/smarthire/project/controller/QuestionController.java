@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
@@ -17,8 +19,9 @@ public class QuestionController {
     private QuestionService questionService ;
 
     @PostMapping("/")
-    public ResponseEntity<QuestionResponse> save(@RequestBody QuestionRequest questionRequest){
-        return new ResponseEntity<>(questionService.save(questionRequest), HttpStatus.OK);
+    public ResponseEntity save(@RequestBody List<QuestionRequest> questionRequestList){
+        questionService.save(questionRequestList);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/")

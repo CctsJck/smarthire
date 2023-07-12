@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public interface QuestionService {
 
-    QuestionResponse save (QuestionRequest questionRequest);
+    void save (List<QuestionRequest> questionRequestList);
 
     QuestionResponse update (QuestionUpdateRequest questionUpdateRequest);
 

@@ -1,5 +1,6 @@
 package com.smarthire.project.service.RecruiterService;
 
+import com.smarthire.project.exception.UserNotFoundException;
 import com.smarthire.project.exception.UserNotUniqueException;
 import com.smarthire.project.mapper.RecruiterMapper;
 import com.smarthire.project.mapper.SearchMapper;
@@ -57,7 +58,7 @@ public class RecruiterServiceImpl implements RecruiterService{
         return recruiterMapper.recruiterToRecruiterResponse(recruiter);
     }
 
-    @Override
+    /*@Override
     public SearchResponse saveSearch(SearchRequest s) {
         Recruiter recruiter = recruiterRepository.findByUsername(s.getUsername());
         Search search = searchMapper.searchRequestToSearch(s);
@@ -68,6 +69,15 @@ public class RecruiterServiceImpl implements RecruiterService{
         log.info("Se creo la busqueda correctamente");
         log.info("Id del search mapeado es:" +searchMapper.searchToSearchResponse(search).getId());
         return searchMapper.searchToSearchResponse(recruiter.getSearches().get(recruiter.getSearches().size()-1));
+    }*/
+
+    @Override
+    public Recruiter findById(long id) {
+        if(recruiterRepository.findById(id).isPresent()){
+            Recruiter recruiter = recruiterRepository.findById(id).get();
+            return recruiter;
+        }
+        throw  new UserNotFoundException("Usuario no encontrado");
     }
 
 

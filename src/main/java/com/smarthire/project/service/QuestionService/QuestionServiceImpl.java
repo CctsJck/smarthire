@@ -32,12 +32,13 @@ public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionMapper questionMapper = QuestionMapper.INSTANCE;
     @Override
-    public QuestionResponse save(QuestionRequest questionRequest) {
-        Question question = questionMapper.questionRequestToQuestion(questionRequest);
-        Search search = searchService.findById(questionRequest.getIdSearch());
-        question.setSearch(search);
-        questionRepository.save(question);
-        return questionMapper.questionToQuestionResponse(question);
+    public void save(List<QuestionRequest> questionRequestList) {
+        for (QuestionRequest questionRequest : questionRequestList){
+            Question question = questionMapper.questionRequestToQuestion(questionRequest);
+            Search search = searchService.findById(questionRequest.getIdSearch());
+            question.setSearch(search);
+            questionRepository.save(question);
+        }
     }
 
     @Override

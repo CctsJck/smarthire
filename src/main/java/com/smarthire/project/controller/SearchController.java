@@ -20,10 +20,16 @@ public class SearchController {
     @Autowired
     private RecruiterService recruiterService;
 
-    @PostMapping("/")
+/*    @PostMapping("/")
     public ResponseEntity<SearchResponse> save(@RequestBody SearchRequest searchRequest){
         return new ResponseEntity<>(recruiterService.saveSearch(searchRequest), HttpStatus.OK);
+    }*/
+
+    @PostMapping("/")
+    public ResponseEntity<SearchResponse> save(@RequestBody SearchRequest searchRequest){
+        return new ResponseEntity<>(searchService.save(searchRequest), HttpStatus.OK);
     }
+
 
     @PutMapping("/")
     public ResponseEntity<SearchResponse> update(@RequestBody SearchUpdateRequest searchUpdateRequest){

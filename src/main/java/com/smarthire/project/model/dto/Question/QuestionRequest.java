@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class QuestionRequest {
 
-    @NotBlank(message = "Ingrese la pregunta")
+    @NotBlank(message = "Ingrese la pregunta!(titulo)")
     private String name;
     @NotBlank(message = "Ingrese el tipo de pregunta")
     private String type;
