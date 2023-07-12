@@ -1,5 +1,7 @@
 package com.smarthire.project.controller;
 
+import com.smarthire.project.model.dto.Recruiter.RecruiterResponse;
+import com.smarthire.project.model.dto.Search.SearchByRecruiterResponse;
 import com.smarthire.project.model.dto.Search.SearchRequest;
 import com.smarthire.project.model.dto.Search.SearchResponse;
 import com.smarthire.project.model.dto.Search.SearchUpdateRequest;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/search")
@@ -40,6 +44,16 @@ public class SearchController {
     public ResponseEntity deleteSearchById(@PathVariable Long id) {
         searchService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SearchResponse> getSearchById(@PathVariable Long id){
+        return new ResponseEntity<>(searchService.getSearchResponseById(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/recruiter/{id}")
+    public ResponseEntity<List<SearchByRecruiterResponse>> getSearchesByRecruiter(@PathVariable Long id){
+        return new ResponseEntity<>(searchService.getSearchesByRecruiter(id),HttpStatus.OK);
     }
 
 }

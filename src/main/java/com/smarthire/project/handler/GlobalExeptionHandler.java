@@ -1,5 +1,7 @@
 package com.smarthire.project.handler;
 
+import com.smarthire.project.exception.EmptySearchesException;
+import com.smarthire.project.exception.SearchNotFoundException;
 import com.smarthire.project.exception.UserNotFoundException;
 import com.smarthire.project.exception.UserNotUniqueException;
 import com.smarthire.project.model.dto.ExceptionResponse;
@@ -44,6 +46,16 @@ public class GlobalExeptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFoundException(Exception e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(SearchNotFoundException.class)
+    public  ResponseEntity<String> handleSearchNotFoundException(Exception e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EmptySearchesException.class)
+    public ResponseEntity<String> handleEmptySearchesException(Exception e){
         return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
     }
 

@@ -1,5 +1,6 @@
 package com.smarthire.project.service.SearchService;
 
+import com.smarthire.project.model.dto.Search.SearchByRecruiterResponse;
 import com.smarthire.project.model.dto.Search.SearchRequest;
 import com.smarthire.project.model.dto.Search.SearchResponse;
 import com.smarthire.project.model.dto.Search.SearchUpdateRequest;
@@ -16,5 +17,7 @@ public interface SearchService {
     SearchResponse getSearchResponseById(Long id);
     List<SearchResponse> getSearchByNombre(String nombre);
     List<SearchResponse> getSearchByDescripcion(String descripcion);
+
+    List<SearchByRecruiterResponse> getSearchesByRecruiter(Long id);
 
 }

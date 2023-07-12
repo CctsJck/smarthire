@@ -1,5 +1,6 @@
 package com.smarthire.project.mapper;
 
+import com.smarthire.project.model.dto.Search.SearchByRecruiterResponse;
 import com.smarthire.project.model.dto.Search.SearchRequest;
 import com.smarthire.project.model.dto.Search.SearchResponse;
 import com.smarthire.project.model.dto.Search.SearchUpdateRequest;
@@ -20,4 +21,6 @@ public interface SearchMapper {
     Search searchUpdateRequestToSearch(SearchUpdateRequest searchUpdateRequest);
 
     List<SearchResponse> searchToSearchResponse(List<Search> search);
+
+    List<SearchByRecruiterResponse> searchTosearchByRecruiterResponse(List<Search> searchList);
 }

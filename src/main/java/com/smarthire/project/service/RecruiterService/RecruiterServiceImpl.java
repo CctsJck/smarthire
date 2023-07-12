@@ -5,17 +5,17 @@ import com.smarthire.project.exception.UserNotUniqueException;
 import com.smarthire.project.mapper.RecruiterMapper;
 import com.smarthire.project.mapper.SearchMapper;
 import com.smarthire.project.model.dto.Recruiter.RecruiterRequest;
-import com.smarthire.project.model.dto.Recruiter.RecuiterResponse;
-import com.smarthire.project.model.dto.Search.SearchRequest;
-import com.smarthire.project.model.dto.Search.SearchResponse;
+import com.smarthire.project.model.dto.Recruiter.RecruiterResponse;
 import com.smarthire.project.model.entity.Recruiter;
-import com.smarthire.project.model.entity.Search;
 import com.smarthire.project.repository.RecruiterRepository;
 import com.smarthire.project.repository.SearchRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -31,7 +31,7 @@ public class RecruiterServiceImpl implements RecruiterService{
     private final SearchMapper searchMapper = SearchMapper.INSTANCE;
     private final RecruiterMapper recruiterMapper = RecruiterMapper.INSTANCE;
     @Override
-    public RecuiterResponse createAccount(RecruiterRequest r) {
+    public RecruiterResponse createAccount(RecruiterRequest r) {
         Recruiter recruiter = recruiterMapper.recruiterRequestToRecruiter(r);
         if(recruiterRepository.existsByUsername(recruiter.getUsername())){
             log.info("recruiter tiene el usuario en uso");
@@ -51,7 +51,7 @@ public class RecruiterServiceImpl implements RecruiterService{
     }
 
     @Override
-    public RecuiterResponse update(RecruiterRequest r) {
+    public RecruiterResponse update(RecruiterRequest r) {
         Recruiter recruiter = recruiterMapper.recruiterRequestToRecruiter(r);
         recruiter = recruiterRepository.save(recruiter);
         log.info("recruiter actualizado correctamente");
@@ -72,12 +72,31 @@ public class RecruiterServiceImpl implements RecruiterService{
     }*/
 
     @Override
-    public Recruiter findById(long id) {
+    public Recruiter findByIdEntity(long id) {
         if(recruiterRepository.findById(id).isPresent()){
             Recruiter recruiter = recruiterRepository.findById(id).get();
             return recruiter;
         }
         throw  new UserNotFoundException("Usuario no encontrado");
+    }
+
+    @Override
+    public RecruiterResponse findByIdResponse(long id) {
+        if(recruiterRepository.findById(id).isPresent()){
+            Recruiter recruiter = recruiterRepository.findById(id).get();
+            return recruiterMapper.recruiterToRecruiterResponse(recruiter);
+        }
+        throw  new UserNotFoundException("Usuario no encontrado");
+    }
+
+    @Override
+    public List<RecruiterResponse> getAllRecruiters() {
+        List<Recruiter> recruiters = recruiterRepository.findAll();
+        List<RecruiterResponse> recruiterResponses = new ArrayList<RecruiterResponse>();
+        for(Recruiter r: recruiters){
+            recruiterResponses.add(recruiterMapper.recruiterToRecruiterResponse(r));
+        }
+        return recruiterResponses;
     }
 
 

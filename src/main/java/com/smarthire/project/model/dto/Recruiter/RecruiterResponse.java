@@ -1,10 +1,8 @@
 package com.smarthire.project.model.dto.Recruiter;
 
 import com.smarthire.project.model.dto.Search.SearchResponse;
-import com.smarthire.project.model.entity.Search;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -12,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RecuiterResponse {
+public class RecruiterResponse {
 
 
     private long id;

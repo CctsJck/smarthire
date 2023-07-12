@@ -1,7 +1,9 @@
 package com.smarthire.project.service.SearchService;
 
+import com.smarthire.project.exception.EmptySearchesException;
 import com.smarthire.project.exception.SearchNotFoundException;
 import com.smarthire.project.mapper.SearchMapper;
+import com.smarthire.project.model.dto.Search.SearchByRecruiterResponse;
 import com.smarthire.project.model.dto.Search.SearchRequest;
 import com.smarthire.project.model.dto.Search.SearchResponse;
 import com.smarthire.project.model.dto.Search.SearchUpdateRequest;
@@ -28,7 +30,7 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public SearchResponse save(SearchRequest searchRequest) {
         Search search = searchMapper.searchRequestToSearch(searchRequest);
-        Recruiter recruiter = recruiterService.findById(searchRequest.getUserId());
+        Recruiter recruiter = recruiterService.findByIdEntity(searchRequest.getUserId());
         search.setRecruiter(recruiter);
         searchRepository.save(search);
         return searchMapper.searchToSearchResponse(search);
@@ -54,7 +56,13 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public SearchResponse getSearchResponseById(Long id) {
-        return null;
+        if(searchRepository.findById(id).isPresent()) {
+            Search search = searchRepository.findById(id).get();
+            return searchMapper.searchToSearchResponse(search);
+        }
+        throw new SearchNotFoundException("No se encontro una busqueda con ese ID");
+
+
     }
 
     @Override
@@ -65,5 +73,15 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<SearchResponse> getSearchByDescripcion(String descripcion) {
         return null;
+    }
+
+    @Override
+    public List<SearchByRecruiterResponse> getSearchesByRecruiter(Long id) {
+        Recruiter recruiter = recruiterService.findByIdEntity(id);
+        List<Search> searches = searchRepository.findByRecruiter(recruiter);
+        if (searches.isEmpty()){
+            throw new EmptySearchesException("El usuario ingresado no tiene busquedas creadas");
+        }
+        return searchMapper.searchTosearchByRecruiterResponse(searches);
     }
 }

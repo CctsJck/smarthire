@@ -1,15 +1,21 @@
 package com.smarthire.project.service.RecruiterService;
 
 import com.smarthire.project.model.dto.Recruiter.RecruiterRequest;
-import com.smarthire.project.model.dto.Recruiter.RecuiterResponse;
-import com.smarthire.project.model.dto.Search.SearchRequest;
-import com.smarthire.project.model.dto.Search.SearchResponse;
+import com.smarthire.project.model.dto.Recruiter.RecruiterResponse;
 import com.smarthire.project.model.entity.Recruiter;
 
+import java.util.List;
+
 public interface RecruiterService {
-    RecuiterResponse createAccount(RecruiterRequest r);
-    RecuiterResponse update(RecruiterRequest r);
+    RecruiterResponse createAccount(RecruiterRequest r);
+    RecruiterResponse update(RecruiterRequest r);
    // SearchResponse saveSearch(SearchRequest s);
 
-    Recruiter findById(long id);
+    Recruiter findByIdEntity(long id);
+
+    RecruiterResponse findByIdResponse(long id);
+
+    List<RecruiterResponse> getAllRecruiters();
+
+
 }
