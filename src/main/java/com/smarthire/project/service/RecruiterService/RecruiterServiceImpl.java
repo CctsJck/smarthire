@@ -1,14 +1,18 @@
 package com.smarthire.project.service.RecruiterService;
 
+import com.smarthire.project.exception.SearchNotFoundException;
 import com.smarthire.project.exception.UserNotFoundException;
 import com.smarthire.project.exception.UserNotUniqueException;
 import com.smarthire.project.mapper.RecruiterMapper;
 import com.smarthire.project.mapper.SearchMapper;
 import com.smarthire.project.model.dto.Recruiter.RecruiterRequest;
 import com.smarthire.project.model.dto.Recruiter.RecruiterResponse;
+import com.smarthire.project.model.entity.ConfirmationToken;
 import com.smarthire.project.model.entity.Recruiter;
+import com.smarthire.project.repository.ConfirmationTokenRepository;
 import com.smarthire.project.repository.RecruiterRepository;
 import com.smarthire.project.repository.SearchRepository;
+import com.smarthire.project.service.EmailService.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +31,11 @@ public class RecruiterServiceImpl implements RecruiterService{
 
     @Autowired
     private SearchRepository searchRepository;
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     private final SearchMapper searchMapper = SearchMapper.INSTANCE;
     private final RecruiterMapper recruiterMapper = RecruiterMapper.INSTANCE;
@@ -42,6 +51,16 @@ public class RecruiterServiceImpl implements RecruiterService{
         }else {
             log.info("id recruiter"+recruiter.getId());
             recruiter = recruiterRepository.save(recruiter);
+
+            ConfirmationToken confirmationToken = new ConfirmationToken(recruiter);
+            confirmationTokenRepository.save(confirmationToken);
+
+            emailService.sendEmail(recruiter.getEmail(),"Confirme su dirección de correo electronico",
+                    "Haga click en el siguiente link para confirmar su mail: " +
+                            "http://localhost:5000/confirm-account?token="+confirmationToken.getConfirmationToken()
+                    );
+
+
             log.info("id recruiter desp save"+recruiter.getId());
             log.info("id del mapper: "+recruiterMapper.recruiterToRecruiterResponse(recruiter).getId());
             log.info("recruiter creado correctamente");
@@ -49,6 +68,7 @@ public class RecruiterServiceImpl implements RecruiterService{
         }
 
     }
+
 
     @Override
     public RecruiterResponse update(RecruiterRequest r) {
@@ -97,6 +117,19 @@ public class RecruiterServiceImpl implements RecruiterService{
             recruiterResponses.add(recruiterMapper.recruiterToRecruiterResponse(r));
         }
         return recruiterResponses;
+    }
+
+    @Override
+    public void confirmToken(String token) {
+        ConfirmationToken confirmationToken = confirmationTokenRepository.findByConfirmationToken(token);
+
+        if (confirmationToken != null &&  recruiterRepository.findByEmail(confirmationToken.getRecruiter().getEmail()).isPresent()){
+            Recruiter recruiter = recruiterRepository.findByEmail(confirmationToken.getRecruiter().getEmail()).get();
+            recruiter.setEnabled(true);
+            recruiterRepository.save(recruiter);
+        }else {
+            throw  new SearchNotFoundException("El link utilizado esta dañado o expiró");
+        }
     }
 
 

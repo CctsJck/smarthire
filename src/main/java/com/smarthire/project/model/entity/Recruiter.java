@@ -17,6 +17,8 @@ public class Recruiter {
     private String username;
     private String email;
     private String pass;
+    private boolean isEnabled;
+
 
     @OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Search> searches;

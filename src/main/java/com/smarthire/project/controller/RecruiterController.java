@@ -23,6 +23,13 @@ public class RecruiterController {
     public ResponseEntity<RecruiterResponse> createAccount(@RequestBody RecruiterRequest recruiterRequest){
         return new ResponseEntity<>(recruiterService.createAccount(recruiterRequest), HttpStatus.OK);
     }
+
+    @PostMapping("/confirmation/{confirmationToken}")
+    public ResponseEntity confirmMail (@PathVariable String confirmationToken){
+        recruiterService.confirmToken(confirmationToken);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
     @PutMapping("/")
     public ResponseEntity<RecruiterResponse> update(@RequestBody RecruiterRequest recruiterRequest){
         return new ResponseEntity<>(recruiterService.update(recruiterRequest), HttpStatus.OK);
