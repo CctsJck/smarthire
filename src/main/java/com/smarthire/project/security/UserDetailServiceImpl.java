@@ -1,5 +1,6 @@
 package com.smarthire.project.security;
 
+import com.smarthire.project.exception.EmailNotCheckedException;
 import com.smarthire.project.model.entity.Recruiter;
 import com.smarthire.project.repository.RecruiterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
        Recruiter recruiter = recruiterRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("El email del usuario no fue encontrado"));
 
-       return new UserDetailsImpl(recruiter);
+       if (recruiter.isEnabled()){
+           return new UserDetailsImpl(recruiter);
+       }else {
+           throw new EmailNotCheckedException("El email no fue verificado");
+       }
+
     }
 }

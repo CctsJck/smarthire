@@ -20,6 +20,7 @@ public class RecruiterResponse {
     private String username;
     private String email;
     private String pass;
+    private boolean isEnabled;
 
     private List<SearchResponse> searches;
 

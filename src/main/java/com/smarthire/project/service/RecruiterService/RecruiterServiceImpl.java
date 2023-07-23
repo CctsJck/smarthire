@@ -15,6 +15,7 @@ import com.smarthire.project.repository.SearchRepository;
 import com.smarthire.project.service.EmailService.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +42,8 @@ public class RecruiterServiceImpl implements RecruiterService{
     private final RecruiterMapper recruiterMapper = RecruiterMapper.INSTANCE;
     @Override
     public RecruiterResponse createAccount(RecruiterRequest r) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         Recruiter recruiter = recruiterMapper.recruiterRequestToRecruiter(r);
         if(recruiterRepository.existsByUsername(recruiter.getUsername())){
             log.info("recruiter tiene el usuario en uso");
@@ -50,14 +53,18 @@ public class RecruiterServiceImpl implements RecruiterService{
             throw new UserNotUniqueException("El email ingresado ya esta en uso");
         }else {
             log.info("id recruiter"+recruiter.getId());
+            String pass = recruiter.getPass();
+            recruiter.setPass(encoder.encode(pass));
             recruiter = recruiterRepository.save(recruiter);
 
             ConfirmationToken confirmationToken = new ConfirmationToken(recruiter);
             confirmationTokenRepository.save(confirmationToken);
 
+            log.info("Mail del recruiter: " + recruiter.getEmail());
+
             emailService.sendEmail(recruiter.getEmail(),"Confirme su dirección de correo electronico",
                     "Haga click en el siguiente link para confirmar su mail: " +
-                            "http://localhost:5000/confirm-account?token="+confirmationToken.getConfirmationToken()
+                            "http://localhost:5000/recruiter/confirmation/"+confirmationToken.getConfirmationToken()
                     );
 
 

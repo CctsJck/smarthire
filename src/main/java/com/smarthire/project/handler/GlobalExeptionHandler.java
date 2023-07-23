@@ -1,9 +1,6 @@
 package com.smarthire.project.handler;
 
-import com.smarthire.project.exception.EmptySearchesException;
-import com.smarthire.project.exception.SearchNotFoundException;
-import com.smarthire.project.exception.UserNotFoundException;
-import com.smarthire.project.exception.UserNotUniqueException;
+import com.smarthire.project.exception.*;
 import com.smarthire.project.model.dto.ExceptionResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -57,6 +54,16 @@ public class GlobalExeptionHandler {
     @ExceptionHandler(EmptySearchesException.class)
     public ResponseEntity<String> handleEmptySearchesException(Exception e){
         return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EmailNotSendException.class)
+    public ResponseEntity<String> handleEmailNotSendException(Exception e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_GATEWAY);
+    }
+
+    @ExceptionHandler(EmailNotCheckedException.class)
+    public ResponseEntity<String> handleEmailNotCheckedException(Exception e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.UNAUTHORIZED);
     }
 
 
