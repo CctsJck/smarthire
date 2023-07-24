@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 public class Question {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;

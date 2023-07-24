@@ -9,7 +9,7 @@ import java.util.List;
 @Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
 public class Recruiter {
 
-    @Id @GeneratedValue//(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
