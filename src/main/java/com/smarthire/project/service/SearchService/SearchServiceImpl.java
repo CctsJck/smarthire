@@ -90,7 +90,7 @@ public class SearchServiceImpl implements SearchService {
 
         if (searchRepository.findById(id).isPresent()){
             Search search = searchRepository.findById(id).get();
-            return "http://localhost:5000/recruiter/share/"+search.getId();
+            return "http://localhost:5000/search/"+search.getId();
         }else {
             throw new SearchNotFoundException("La busqueda no existe o expiró!");
         }

@@ -46,7 +46,7 @@ public class SearchController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //TODO ES NECESARIO GETEAR TODAS LAS PREGUNTAS AHORA O DESPUES 
     public ResponseEntity<SearchResponse> getSearchById(@PathVariable Long id){
         return new ResponseEntity<>(searchService.getSearchResponseById(id),HttpStatus.OK);
     }
