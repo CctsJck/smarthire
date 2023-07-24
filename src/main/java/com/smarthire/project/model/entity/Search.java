@@ -23,4 +23,8 @@ public class Search {
     @OneToMany(mappedBy = "search",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
 
+
+    @OneToMany(mappedBy = "search", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Candidate> candidates;
+
 }

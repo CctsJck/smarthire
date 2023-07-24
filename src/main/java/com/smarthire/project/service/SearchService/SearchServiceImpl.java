@@ -84,4 +84,17 @@ public class SearchServiceImpl implements SearchService {
         }
         return searchMapper.searchTosearchByRecruiterResponse(searches);
     }
+
+    @Override
+    public String generateShareLink(Long id) {
+
+        if (searchRepository.findById(id).isPresent()){
+            Search search = searchRepository.findById(id).get();
+            return "http://localhost:5000/recruiter/share/"+search.getId();
+        }else {
+            throw new SearchNotFoundException("La busqueda no existe o expiró!");
+        }
+
+
+    }
 }

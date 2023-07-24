@@ -20,4 +20,6 @@ public interface SearchService {
 
     List<SearchByRecruiterResponse> getSearchesByRecruiter(Long id);
 
+    String generateShareLink(Long id);
+
 }

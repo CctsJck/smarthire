@@ -51,6 +51,11 @@ public class SearchController {
         return new ResponseEntity<>(searchService.getSearchResponseById(id),HttpStatus.OK);
     }
 
+    @GetMapping("/share/{id}")
+    public ResponseEntity<String> searchLink(@PathVariable Long id){
+        return new ResponseEntity<String>(searchService.generateShareLink(id),HttpStatus.OK);
+    }
+
     @GetMapping("/recruiter/{id}")
     public ResponseEntity<List<SearchByRecruiterResponse>> getSearchesByRecruiter(@PathVariable Long id){
         return new ResponseEntity<>(searchService.getSearchesByRecruiter(id),HttpStatus.OK);
