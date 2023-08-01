@@ -3,6 +3,7 @@ package com.smarthire.project.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,4 +24,17 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "search_id")
     private Search search;
+
+
+    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Result> results;
+
+
+    @ManyToOne
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
+
+
+
+
 }

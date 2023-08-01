@@ -26,5 +26,5 @@ public class CandidateController {
         return new ResponseEntity<CandidateResponse>(candidateService.createCandidate(candidateRequest), HttpStatus.OK);
     }
 
-    @PostMapping("/submit")//ver video para submitear un file
+
 }

@@ -1,5 +1,6 @@
 package com.smarthire.project.service.CandidateService;
 
+import com.smarthire.project.exception.CandidateNotFoundException;
 import com.smarthire.project.mapper.CandidateMapper;
 import com.smarthire.project.model.dto.Candidate.CandidateRequest;
 import com.smarthire.project.model.dto.Candidate.CandidateResponse;
@@ -26,5 +27,14 @@ public class CandidateServiceImpl implements CandidateService{
         candidateRepository.save(candidate);
         CandidateResponse response = candidateMapper.candidateToCandidateResponse(candidate);
         return response;
+    }
+
+    @Override
+    public Candidate findCandidateById(Long id) {
+        if(candidateRepository.findById(id).isPresent()){
+            return candidateRepository.findById(id).get();
+        }else{
+            throw new CandidateNotFoundException("No se encontro el candidato seleccionado");
+        }
     }
 }

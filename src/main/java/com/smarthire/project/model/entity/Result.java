@@ -23,8 +23,21 @@ public class Result {
     private Float surprise;
 
 
-    @OneToOne(mappedBy = "result")
+    @ManyToOne
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
+
+
+
+
+
+
+
+
 
 
 

@@ -66,5 +66,10 @@ public class GlobalExeptionHandler {
         return new ResponseEntity<>(e.getMessage(),HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(CandidateNotFoundException.class)
+    public ResponseEntity<String> handleCandidateNotFoundException(Exception e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+    }
+
 
 }
