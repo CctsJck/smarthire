@@ -14,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 
 import static org.springframework.http.HttpMethod.GET;
@@ -35,14 +38,23 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
+        // Configuración del filtro CorsFilter
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*"); // Permite solicitudes desde cualquier origen
+        config.addAllowedMethod("*"); // Permite todos los métodos HTTP (GET, POST, etc.)
+        config.addAllowedHeader("*"); // Permite todas las cabeceras HTTP
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
 
         return http
                 .csrf().disable()
+                .cors().configurationSource(source) // Habilita la configuración Cors
+                .and()
                 .authorizeRequests()
-                    .antMatchers(POST,"/recruiter/**").permitAll()
-                    .antMatchers(POST,"/recruiter/confirmation/**").permitAll()
-                    .antMatchers(GET,"/recruiter/**").permitAll()
-                    .antMatchers(GET,"/search/**") .permitAll()
+                .antMatchers(POST,"/recruiter/**").permitAll()
+                .antMatchers(POST,"/recruiter/confirmation/**").permitAll()
+                .antMatchers(GET,"/recruiter/**").permitAll()
+                .antMatchers(GET,"/search/**") .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -53,16 +65,6 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthorizationFilter,UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-   /* @Bean
-    UserDetailsService userDetailsService(){
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles()
-                .build());
-
-        return manager;
-    }*/
 
     @Bean
     AuthenticationManager authManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
@@ -77,6 +79,4 @@ public class WebSecurityConfig {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
-
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 public class Question {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private long id;
 
     private String name;

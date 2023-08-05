@@ -26,6 +26,7 @@ public class RecruiterController {
 
     @PostMapping("/confirmation/{confirmationToken}")
     public ResponseEntity confirmMail (@PathVariable String confirmationToken){
+
         recruiterService.confirmToken(confirmationToken);
         return new ResponseEntity(HttpStatus.OK);
     }

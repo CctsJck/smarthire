@@ -129,6 +129,8 @@ public class RecruiterServiceImpl implements RecruiterService{
     @Override
     public void confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenRepository.findByConfirmationToken(token);
+        log.info("entre");
+        log.info(confirmationToken.toString());
 
         if (confirmationToken != null &&  recruiterRepository.findByEmail(confirmationToken.getRecruiter().getEmail()).isPresent()){
             Recruiter recruiter = recruiterRepository.findByEmail(confirmationToken.getRecruiter().getEmail()).get();

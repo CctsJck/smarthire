@@ -15,7 +15,7 @@ import java.util.UUID;
 public class ConfirmationToken {
 
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private long tokenId;
     private String confirmationToken;
     @Temporal(TemporalType.TIMESTAMP)

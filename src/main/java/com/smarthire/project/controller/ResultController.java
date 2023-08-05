@@ -21,13 +21,13 @@ public class ResultController {
     @Autowired
     private ResultService resultService;
 
-    @PostMapping("/{candidate}/{question}}")
+    /*@PostMapping("/{candidate}/{question}}")
     public ResponseEntity<ResultResponse> uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Long candidate,@PathVariable Long question){
 
         String url  = "";
         ResultRequest resultRequest = restTemplate.getForObject(url, ResultRequest.class);
         return new ResponseEntity<ResultResponse>(resultService.createResult(resultRequest,candidate,question), HttpStatus.OK);
-    }
+    }*/
 
 
 

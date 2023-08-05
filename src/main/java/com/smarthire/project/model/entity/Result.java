@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 public class Result {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private long id;
     private Float angry;
     private Float disgust;
