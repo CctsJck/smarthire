@@ -20,11 +20,11 @@ public class Search {
     @JoinColumn(name = "recruiter_id")
     private Recruiter recruiter;
 
-    @OneToMany(mappedBy = "search",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "search",cascade = CascadeType.ALL)
     private List<Question> questions;
 
 
-    @OneToMany(mappedBy = "search", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "search", cascade = CascadeType.ALL)
     private List<Candidate> candidates;
 
 }

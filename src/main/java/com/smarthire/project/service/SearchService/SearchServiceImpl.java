@@ -11,12 +11,16 @@ import com.smarthire.project.model.entity.Recruiter;
 import com.smarthire.project.model.entity.Search;
 import com.smarthire.project.repository.SearchRepository;
 import com.smarthire.project.service.RecruiterService.RecruiterService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Slf4j
+@Transactional
 public class SearchServiceImpl implements SearchService {
 
     @Autowired
@@ -38,7 +42,13 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public SearchResponse update(SearchUpdateRequest searchUpdateRequest) {
-        Search searchEntity = searchRepository.save(searchMapper.searchUpdateRequestToSearch(searchUpdateRequest));
+        log.info("entre al metodo");
+        log.info(searchUpdateRequest.getDescription());
+        log.info(String.valueOf(searchUpdateRequest.getQuestions().size()));
+        log.info(searchMapper.searchUpdateRequestToSearch(searchUpdateRequest).getDescription());
+        log.info(String.valueOf(searchMapper.searchUpdateRequestToSearch(searchUpdateRequest).getQuestions().size()));
+        Search searchEntity = searchMapper.searchUpdateRequestToSearch(searchUpdateRequest);
+        searchRepository.save(searchEntity);
         return searchMapper.searchToSearchResponse(searchEntity);
     }
 

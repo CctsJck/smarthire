@@ -43,6 +43,7 @@ public class WebSecurityConfig {
         config.addAllowedOrigin("*"); // Permite solicitudes desde cualquier origen
         config.addAllowedMethod("*"); // Permite todos los métodos HTTP (GET, POST, etc.)
         config.addAllowedHeader("*"); // Permite todas las cabeceras HTTP
+        config.addExposedHeader("*");//Permite los headers
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
@@ -53,7 +54,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers(POST,"/recruiter/**").permitAll()
                 .antMatchers(POST,"/recruiter/confirmation/**").permitAll()
-                .antMatchers(GET,"/recruiter/**").permitAll()
+                //.antMatchers(GET,"/recruiter/**").permitAll()
                 .antMatchers(GET,"/search/**") .permitAll()
                 .anyRequest()
                 .authenticated()

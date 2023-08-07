@@ -13,5 +13,4 @@ public class QuestionResponse {
     private String name;
     private String type;
     private String picture;
-    private String video;
 }

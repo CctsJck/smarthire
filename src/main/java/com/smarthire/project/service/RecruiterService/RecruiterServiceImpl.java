@@ -7,6 +7,8 @@ import com.smarthire.project.mapper.RecruiterMapper;
 import com.smarthire.project.mapper.SearchMapper;
 import com.smarthire.project.model.dto.Recruiter.RecruiterRequest;
 import com.smarthire.project.model.dto.Recruiter.RecruiterResponse;
+import com.smarthire.project.model.dto.Recruiter.RecruiterResponseEmail;
+import com.smarthire.project.model.dto.Recruiter.RecruiterUpdateRequest;
 import com.smarthire.project.model.entity.ConfirmationToken;
 import com.smarthire.project.model.entity.Recruiter;
 import com.smarthire.project.repository.ConfirmationTokenRepository;
@@ -78,8 +80,9 @@ public class RecruiterServiceImpl implements RecruiterService{
 
 
     @Override
-    public RecruiterResponse update(RecruiterRequest r) {
-        Recruiter recruiter = recruiterMapper.recruiterRequestToRecruiter(r);
+    public RecruiterResponse update(RecruiterUpdateRequest r) {
+        log.info(String.valueOf(recruiterMapper.recruiterUpdateRequestToRecruiter(r).getName()));
+        Recruiter recruiter = recruiterMapper.recruiterUpdateRequestToRecruiter(r);
         recruiter = recruiterRepository.save(recruiter);
         log.info("recruiter actualizado correctamente");
         return recruiterMapper.recruiterToRecruiterResponse(recruiter);
@@ -129,8 +132,6 @@ public class RecruiterServiceImpl implements RecruiterService{
     @Override
     public void confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenRepository.findByConfirmationToken(token);
-        log.info("entre");
-        log.info(confirmationToken.toString());
 
         if (confirmationToken != null &&  recruiterRepository.findByEmail(confirmationToken.getRecruiter().getEmail()).isPresent()){
             Recruiter recruiter = recruiterRepository.findByEmail(confirmationToken.getRecruiter().getEmail()).get();
@@ -138,6 +139,16 @@ public class RecruiterServiceImpl implements RecruiterService{
             recruiterRepository.save(recruiter);
         }else {
             throw  new SearchNotFoundException("El link utilizado esta dañado o expiró");
+        }
+    }
+
+    @Override
+    public RecruiterResponseEmail findByMail(String mail) {
+        if (recruiterRepository.findByEmail(mail).isPresent()){
+            Recruiter recruiter = recruiterRepository.findByEmail(mail).get();
+            return recruiterMapper.recruiterToRecruiterResponseEmail(recruiter);
+        }else {
+            throw new UserNotFoundException("El mail ingresado no existe!");
         }
     }
 

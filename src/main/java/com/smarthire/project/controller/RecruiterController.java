@@ -3,6 +3,8 @@ package com.smarthire.project.controller;
 
 import com.smarthire.project.model.dto.Recruiter.RecruiterRequest;
 import com.smarthire.project.model.dto.Recruiter.RecruiterResponse;
+import com.smarthire.project.model.dto.Recruiter.RecruiterResponseEmail;
+import com.smarthire.project.model.dto.Recruiter.RecruiterUpdateRequest;
 import com.smarthire.project.service.RecruiterService.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,13 +34,18 @@ public class RecruiterController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<RecruiterResponse> update(@RequestBody RecruiterRequest recruiterRequest){
-        return new ResponseEntity<>(recruiterService.update(recruiterRequest), HttpStatus.OK);
+    public ResponseEntity<RecruiterResponse> update(@RequestBody RecruiterUpdateRequest recruiterUpdateRequest){
+        return new ResponseEntity<>(recruiterService.update(recruiterUpdateRequest), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RecruiterResponse> getRecruiterById(@PathVariable Long id){
         return new ResponseEntity<>(recruiterService.findByIdResponse(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<RecruiterResponseEmail> getRecruiterByMail(@PathVariable String email){
+        return new ResponseEntity<>(recruiterService.findByMail(email),HttpStatus.OK);
     }
 
     /*@GetMapping("/")

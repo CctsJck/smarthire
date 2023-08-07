@@ -18,5 +18,4 @@ public class QuestionUpdateRequest {
     @NotBlank(message = "Ingrese el tipo de pregunta")
     private String type;
     private String picture;
-    private String video;
 }

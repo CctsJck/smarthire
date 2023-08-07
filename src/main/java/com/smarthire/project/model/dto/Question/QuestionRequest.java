@@ -16,7 +16,6 @@ public class QuestionRequest {
     @NotBlank(message = "Ingrese el tipo de pregunta")
     private String type;
     private String picture;
-    private String video;
 
     @NotBlank(message = "id de la busqueda necesario")
     private long idSearch;

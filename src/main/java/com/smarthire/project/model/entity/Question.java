@@ -19,14 +19,13 @@ public class Question {
     private String name;
     private String type;
     private String picture;
-    private String video;
 
     @ManyToOne
     @JoinColumn(name = "search_id")
     private Search search;
 
 
-    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
     private List<Result> results;
 
 

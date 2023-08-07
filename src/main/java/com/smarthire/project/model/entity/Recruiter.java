@@ -20,7 +20,7 @@ public class Recruiter {
     private boolean isEnabled;
 
 
-    @OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL)
     private List<Search> searches;
 
 

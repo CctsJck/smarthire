@@ -2,6 +2,8 @@ package com.smarthire.project.mapper;
 
 import com.smarthire.project.model.dto.Recruiter.RecruiterRequest;
 import com.smarthire.project.model.dto.Recruiter.RecruiterResponse;
+import com.smarthire.project.model.dto.Recruiter.RecruiterResponseEmail;
+import com.smarthire.project.model.dto.Recruiter.RecruiterUpdateRequest;
 import com.smarthire.project.model.entity.Recruiter;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -13,6 +15,10 @@ public interface RecruiterMapper {
 
     Recruiter recruiterRequestToRecruiter(RecruiterRequest recruiterRequest);
     RecruiterResponse recruiterToRecruiterResponse(Recruiter recruiter);
+
+    Recruiter  recruiterUpdateRequestToRecruiter (RecruiterUpdateRequest recruiter);
+
+    RecruiterResponseEmail recruiterToRecruiterResponseEmail(Recruiter recruiter);
 
 
 
