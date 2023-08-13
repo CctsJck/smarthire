@@ -15,6 +15,4 @@ public class CandidateResponse {
     private long id;
     private String name;
     private String surename;
-    private Search search;
-    private Result result;
 }

@@ -1,5 +1,12 @@
 package com.smarthire.project.model.dto.Result;
 
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ResultRequest {
 
     private Float angry;

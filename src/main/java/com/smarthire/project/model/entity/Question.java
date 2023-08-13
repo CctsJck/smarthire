@@ -29,11 +29,6 @@ public class Question {
     private List<Result> results;
 
 
-    @ManyToOne
-    @JoinColumn(name = "candidate_id")
-    private Candidate candidate;
-
-
 
 
 }

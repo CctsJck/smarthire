@@ -27,8 +27,4 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate",cascade = CascadeType.ALL)
     private List<Result> results;
 
-
-    @OneToMany(mappedBy = "candidate",cascade = CascadeType.ALL)
-    private List<Question> questions;
-
 }

@@ -43,7 +43,10 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionResponse update(QuestionUpdateRequest questionUpdateRequest) {
-        Question question = questionRepository.save(questionMapper.questionUpdateRequestToQuestion(questionUpdateRequest));
+        Question auxQuestion = questionRepository.findById(questionMapper.questionUpdateRequestToQuestion(questionUpdateRequest).getId()).get();
+        Question question = questionMapper.questionUpdateRequestToQuestion(questionUpdateRequest);
+        question.setSearch(searchService.findById(auxQuestion.getSearch().getId()));
+        questionRepository.save(question);
         return questionMapper.questionToQuestionResponse(question);
     }
 

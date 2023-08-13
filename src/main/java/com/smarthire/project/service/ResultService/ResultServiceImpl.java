@@ -42,11 +42,16 @@ public class ResultServiceImpl implements ResultService{
     public ResultResponse createResult(ResultRequest resultRequest, Long candidate, Long question) {
         Candidate candidateEntity = candidateService.findCandidateById(candidate);
         Question questionEntity = questionService.findById(question);
-        Result result = resultMapper.resultRequestToResult(resultRequest);
-
+        Result result = new Result();
+        result.setAngry(resultRequest.getAngry());
+        result.setDisgust(resultRequest.getDisgust());
+        result.setFear(resultRequest.getFear());
+        result.setHappy(resultRequest.getHappy());
+        result.setNeutral(resultRequest.getNeutral());
+        result.setSad(resultRequest.getSad());
+        result.setSurprise(resultRequest.getSurprise());
         result.setCandidate(candidateEntity);
         result.setQuestion(questionEntity);
-
         resultRepository.save(result);
 
         return resultMapper.resultToResultResponse(result);
