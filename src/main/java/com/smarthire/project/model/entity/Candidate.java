@@ -27,4 +27,8 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate",cascade = CascadeType.ALL)
     private List<Result> results;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cv_id", referencedColumnName = "id")
+    private Cv cv;
+
 }
