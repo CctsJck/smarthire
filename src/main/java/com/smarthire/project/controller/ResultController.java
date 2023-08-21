@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.util.List;
 import java.util.Objects;
 
 // ...
@@ -55,5 +56,22 @@ public class ResultController {
         File tempFile = File.createTempFile("temp", ".mp4");
         multipartFile.transferTo(tempFile);
         return tempFile;
+    }
+
+
+    @PostMapping("/{candidate}/{question}")
+    public ResponseEntity<ResultResponse> getAnswer(
+            @PathVariable Long candidate,
+            @PathVariable Long question,
+            @RequestBody List<ResultRequest> answer){
+        String url = "http://127.0.0.1:8000/uploadfile/";
+
+        HttpEntity<List<ResultRequest>> resultRequest = new HttpEntity<>(answer);
+
+        ResponseEntity<ResultRequest> response = restTemplate.exchange(url, HttpMethod.POST, resultRequest, ResultRequest.class);
+        ResultRequest result = response.getBody();
+
+        return new ResponseEntity<>(resultService.createResult(result,candidate,question),HttpStatus.OK);
+
     }
 }

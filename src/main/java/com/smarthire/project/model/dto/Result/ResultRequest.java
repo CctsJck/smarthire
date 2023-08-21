@@ -10,8 +10,8 @@ import lombok.*;
 public class ResultRequest {
 
     private Float angry;
-    private Float disgust;
-    private Float fear;
+    private Float disgusted;
+    private Float fearful;
     private Float happy;
     private Float neutral;
     private Float sad;
