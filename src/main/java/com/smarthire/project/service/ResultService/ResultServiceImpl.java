@@ -44,8 +44,8 @@ public class ResultServiceImpl implements ResultService{
         Question questionEntity = questionService.findById(question);
         Result result = new Result();
         result.setAngry(resultRequest.getAngry());
-        result.setDisgust(resultRequest.getDisgust());
-        result.setFear(resultRequest.getFear());
+        result.setDisgust(resultRequest.getDisgusted());
+        result.setFear(resultRequest.getFearful());
         result.setHappy(resultRequest.getHappy());
         result.setNeutral(resultRequest.getNeutral());
         result.setSad(resultRequest.getSad());

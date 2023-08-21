@@ -3,6 +3,7 @@ package com.smarthire.project.controller;
 import com.smarthire.project.model.dto.Result.ResultRequest;
 import com.smarthire.project.model.dto.Result.ResultResponse;
 import com.smarthire.project.service.ResultService.ResultService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -22,6 +23,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/result")
+@Slf4j
 public class ResultController {
 
     @Autowired
@@ -59,19 +61,15 @@ public class ResultController {
     }
 
 
-    @PostMapping("/{candidate}/{question}")
+    @PostMapping("/hola/{candidate}/{question}")
     public ResponseEntity<ResultResponse> getAnswer(
             @PathVariable Long candidate,
             @PathVariable Long question,
             @RequestBody List<ResultRequest> answer){
-        String url = "http://127.0.0.1:8000/uploadfile/";
+        String url = "http://127.0.0.1:8000/uploadResult";
 
-        HttpEntity<List<ResultRequest>> resultRequest = new HttpEntity<>(answer);
 
-        ResponseEntity<ResultRequest> response = restTemplate.exchange(url, HttpMethod.POST, resultRequest, ResultRequest.class);
-        ResultRequest result = response.getBody();
-
-        return new ResponseEntity<>(resultService.createResult(result,candidate,question),HttpStatus.OK);
-
+        restTemplate.postForObject(url, answer, ResponseEntity.class);
+        return null;
     }
 }
