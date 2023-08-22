@@ -15,5 +15,5 @@ public class ResultRequest {
     private Float happy;
     private Float neutral;
     private Float sad;
-    private Float surprise;
+    private Float surprised;
 }

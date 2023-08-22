@@ -49,7 +49,7 @@ public class ResultServiceImpl implements ResultService{
         result.setHappy(resultRequest.getHappy());
         result.setNeutral(resultRequest.getNeutral());
         result.setSad(resultRequest.getSad());
-        result.setSurprise(resultRequest.getSurprise());
+        result.setSurprise(resultRequest.getSurprised());
         result.setCandidate(candidateEntity);
         result.setQuestion(questionEntity);
         resultRepository.save(result);

@@ -68,8 +68,15 @@ public class ResultController {
             @RequestBody List<ResultRequest> answer){
         String url = "http://127.0.0.1:8000/uploadResult";
 
+        log.info(String.valueOf(answer.get(0).getHappy()));
 
-        restTemplate.postForObject(url, answer, ResponseEntity.class);
-        return null;
+        HttpEntity<List<ResultRequest>> resultRequest = new HttpEntity<>(answer);
+
+        //log.info(resultRequest.getBody().toString());
+
+        ResponseEntity<ResultRequest> response = restTemplate.exchange(url, HttpMethod.POST, resultRequest, ResultRequest.class);
+        ResultRequest result = response.getBody();
+        log.info(result.getHappy().toString());
+        return new ResponseEntity<>(resultService.createResult(result,candidate,question),HttpStatus.OK);
     }
 }
