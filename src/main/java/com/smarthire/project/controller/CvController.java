@@ -55,4 +55,9 @@ public class CvController {
         return tempFile;
     }
 
+    @GetMapping("/{candidate}")
+    public ResponseEntity<CvResponse> getCVByCandidate(@PathVariable Long candidate){
+        return new ResponseEntity<>(cvService.getByCandidate(candidate),HttpStatus.OK);
+    }
+
 }

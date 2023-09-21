@@ -1,7 +1,7 @@
 package com.smarthire.project.service.ResultService;
 
 import com.smarthire.project.mapper.ResultMapper;
-import com.smarthire.project.mapper.SearchMapper;
+import com.smarthire.project.model.dto.Result.ResultFilterResponse;
 import com.smarthire.project.model.dto.Result.ResultRequest;
 import com.smarthire.project.model.dto.Result.ResultResponse;
 import com.smarthire.project.model.entity.Candidate;
@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -56,5 +58,13 @@ public class ResultServiceImpl implements ResultService{
 
         return resultMapper.resultToResultResponse(result);
 
+    }
+
+    @Override
+    public List<ResultFilterResponse> filterResults(Long question) {
+        Question question1 = questionService.findById(question);
+        List<Result> results = resultRepository.findByQuestion(question1);
+        log.info(results.get(0).getCandidate().getName());
+        return resultMapper.resultToResultFilterResponse(results);
     }
 }

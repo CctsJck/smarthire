@@ -38,7 +38,7 @@ public class GlobalExeptionHandler {
         return new ResponseEntity<>(ExceptionResponse.builder()
                 .message(ex.getMessage())
                 .timestamp(LocalDateTime.now())
-                .build(), HttpStatus.OK);
+                .build(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(UserNotFoundException.class)

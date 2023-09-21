@@ -45,4 +45,11 @@ public class CvServiceImpl implements CvService{
         return cvResponse;
 
     }
+
+    @Override
+    public CvResponse getByCandidate(Long candidate) {
+        Candidate candidate1 = candidateService.findCandidateById(candidate);
+        Cv cv = cvRepository.findByCandidate(candidate1);
+        return cvMapper.CvToCvResponse(cv);
+    }
 }

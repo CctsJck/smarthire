@@ -1,5 +1,6 @@
 package com.smarthire.project.controller;
 
+import com.smarthire.project.model.dto.Result.ResultFilterResponse;
 import com.smarthire.project.model.dto.Result.ResultRequest;
 import com.smarthire.project.model.dto.Result.ResultResponse;
 import com.smarthire.project.service.ResultService.ResultService;
@@ -78,5 +79,11 @@ public class ResultController {
         ResultRequest result = response.getBody();
         log.info(result.getHappy().toString());
         return new ResponseEntity<>(resultService.createResult(result,candidate,question),HttpStatus.OK);
+    }
+
+
+    @GetMapping("/filter/{question}")
+    public ResponseEntity<List<ResultFilterResponse>> getAllAnswers(@PathVariable Long question){
+        return new ResponseEntity<>(resultService.filterResults(question),HttpStatus.OK);
     }
 }
