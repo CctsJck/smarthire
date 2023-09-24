@@ -58,6 +58,7 @@ public class WebSecurityConfig {
                 .antMatchers(GET,"/search/**") .permitAll()
                 .antMatchers(POST,"/candidate/**") .permitAll()
                 .antMatchers(POST,"/result/**") .permitAll()
+                .antMatchers(POST,"/cv/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
