@@ -88,7 +88,7 @@ public class ResultController {
     }
 
     @GetMapping("/test")
-    public ResponseEntity<String> testBack() {
-    return new ResponseEntity<>("Funciona", HttpStatus.OK);
+    public String testBack() {
+    return "Funciona";
     }
 }
