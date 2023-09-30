@@ -32,7 +32,7 @@ public class ResultController {
     @Autowired
     private ResultService resultService;
 
-    @PostMapping("/{candidate}/{question}")
+    /*@PostMapping("/{candidate}/{question}")
     public ResponseEntity<ResultResponse> uploadFile(
             @PathVariable Long candidate,
             @PathVariable Long question,
@@ -59,10 +59,10 @@ public class ResultController {
         File tempFile = File.createTempFile("temp", ".mp4");
         multipartFile.transferTo(tempFile);
         return tempFile;
-    }
+    }*/
 
 
-    @PostMapping("/hola/{candidate}/{question}")
+    @PostMapping("/{candidate}/{question}")
     public ResponseEntity<ResultResponse> getAnswer(
             @PathVariable Long candidate,
             @PathVariable Long question,
@@ -85,5 +85,10 @@ public class ResultController {
     @GetMapping("/filter/{question}")
     public ResponseEntity<List<ResultFilterResponse>> getAllAnswers(@PathVariable Long question){
         return new ResponseEntity<>(resultService.filterResults(question),HttpStatus.OK);
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> testBack() {
+    return new ResponseEntity<>("Funciona", HttpStatus.OK);
     }
 }
