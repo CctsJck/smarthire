@@ -12,5 +12,6 @@ public interface CvMapper {
     CvMapper INSTANCE = Mappers.getMapper(CvMapper.class);
 
     @Mapping(source = "cv", target = "Cv") // Specify the mapping between field names
+    @Mapping(source = "candidate", target ="cv.candidate.id")
     CvResponse cvToCvResponse(Cv cv);
 }
