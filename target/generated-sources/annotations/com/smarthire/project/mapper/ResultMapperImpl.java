@@ -1,10 +1,12 @@
 package com.smarthire.project.mapper;
 
 import com.smarthire.project.model.dto.Candidate.CandidateResponse;
+import com.smarthire.project.model.dto.Cv.CvResponse;
 import com.smarthire.project.model.dto.Result.ResultFilterResponse;
 import com.smarthire.project.model.dto.Result.ResultRequest;
 import com.smarthire.project.model.dto.Result.ResultResponse;
 import com.smarthire.project.model.entity.Candidate;
+import com.smarthire.project.model.entity.Cv;
 import com.smarthire.project.model.entity.Result;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-30T11:48:58-0300",
+    date = "2023-10-14T11:23:57-0300",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
 public class ResultMapperImpl implements ResultMapper {
@@ -61,6 +63,7 @@ public class ResultMapperImpl implements ResultMapper {
 
         ResultFilterResponse.ResultFilterResponseBuilder resultFilterResponse = ResultFilterResponse.builder();
 
+        resultFilterResponse.candidate( candidateToCandidateResponse( result.getCandidate() ) );
         resultFilterResponse.id( result.getId() );
         resultFilterResponse.angry( result.getAngry() );
         resultFilterResponse.disgust( result.getDisgust() );
@@ -69,7 +72,6 @@ public class ResultMapperImpl implements ResultMapper {
         resultFilterResponse.neutral( result.getNeutral() );
         resultFilterResponse.sad( result.getSad() );
         resultFilterResponse.surprise( result.getSurprise() );
-        resultFilterResponse.candidate( candidateToCandidateResponse( result.getCandidate() ) );
 
         return resultFilterResponse.build();
     }
@@ -88,6 +90,19 @@ public class ResultMapperImpl implements ResultMapper {
         return list;
     }
 
+    protected CvResponse cvToCvResponse(Cv cv) {
+        if ( cv == null ) {
+            return null;
+        }
+
+        CvResponse.CvResponseBuilder cvResponse = CvResponse.builder();
+
+        cvResponse.Cv( cv.getCv() );
+        cvResponse.id( cv.getId() );
+
+        return cvResponse.build();
+    }
+
     protected CandidateResponse candidateToCandidateResponse(Candidate candidate) {
         if ( candidate == null ) {
             return null;
@@ -95,6 +110,7 @@ public class ResultMapperImpl implements ResultMapper {
 
         CandidateResponse.CandidateResponseBuilder candidateResponse = CandidateResponse.builder();
 
+        candidateResponse.cvResponse( cvToCvResponse( candidate.getCv() ) );
         candidateResponse.id( candidate.getId() );
         candidateResponse.name( candidate.getName() );
         candidateResponse.surename( candidate.getSurename() );
