@@ -15,7 +15,6 @@ public class QuestionUpdateRequest {
     private long id;
     @NotBlank(message = "Ingrese la pregunta")
     private String name;
-    @NotBlank(message = "Ingrese el tipo de pregunta")
-    private String type;
-    private String picture;
+    @NotBlank(message = "Ingrese el tiempo para responder")
+    private Integer type;
 }

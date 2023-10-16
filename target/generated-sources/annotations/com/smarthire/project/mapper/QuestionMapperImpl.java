@@ -10,7 +10,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-14T11:22:58-0300",
+    date = "2023-10-16T19:57:07-0300",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
 public class QuestionMapperImpl implements QuestionMapper {
@@ -24,8 +24,7 @@ public class QuestionMapperImpl implements QuestionMapper {
         Question.QuestionBuilder question = Question.builder();
 
         question.name( questionRequest.getName() );
-        question.type( questionRequest.getType() );
-        question.picture( questionRequest.getPicture() );
+        question.time( questionRequest.getTime() );
 
         return question.build();
     }
@@ -40,8 +39,7 @@ public class QuestionMapperImpl implements QuestionMapper {
 
         questionResponse.id( question.getId() );
         questionResponse.name( question.getName() );
-        questionResponse.type( question.getType() );
-        questionResponse.picture( question.getPicture() );
+        questionResponse.time( question.getTime() );
 
         return questionResponse.build();
     }
@@ -56,8 +54,6 @@ public class QuestionMapperImpl implements QuestionMapper {
 
         question.id( questionUpdateRequest.getId() );
         question.name( questionUpdateRequest.getName() );
-        question.type( questionUpdateRequest.getType() );
-        question.picture( questionUpdateRequest.getPicture() );
 
         return question.build();
     }
