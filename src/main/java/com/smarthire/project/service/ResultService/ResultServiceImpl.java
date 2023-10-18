@@ -1,5 +1,6 @@
 package com.smarthire.project.service.ResultService;
 
+import com.smarthire.project.exception.ResultNotFoundException;
 import com.smarthire.project.mapper.ResultMapper;
 import com.smarthire.project.model.dto.Result.ResultFilterResponse;
 import com.smarthire.project.model.dto.Result.ResultRequest;
@@ -63,8 +64,13 @@ public class ResultServiceImpl implements ResultService{
     @Override
     public List<ResultFilterResponse> filterResults(Long question) {
         Question question1 = questionService.findById(question);
-        List<Result> results = resultRepository.findByQuestion(question1);
-        log.info(results.get(0).getCandidate().getName());
-        return resultMapper.resultToResultFilterResponse(results);
+        if (resultRepository.findByQuestion(question1).isEmpty()){
+            throw new ResultNotFoundException("No hay resultados para esta busqueda");
+        }else{
+            List<Result> results = resultRepository.findByQuestion(question1);
+            log.info(results.get(0).getCandidate().getName());
+            return resultMapper.resultToResultFilterResponse(results);
+        }
     }
+
 }

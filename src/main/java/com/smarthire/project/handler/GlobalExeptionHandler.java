@@ -71,5 +71,10 @@ public class GlobalExeptionHandler {
         return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ResultNotFoundException.class)
+    public ResponseEntity<String> handleResultNotFoundException(Exception e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+    }
+
 
 }
