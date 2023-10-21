@@ -63,7 +63,7 @@ public class CvController {
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response =  restTemplate.exchange("http://127.0.0.1:8000/uploadpdffile", HttpMethod.POST, requestEntity, String.class);
+        ResponseEntity<String> response =  restTemplate.exchange("http://20.124.60.170/uploadpdffile", HttpMethod.POST, requestEntity, String.class);
         CvRequest cvRequest = new CvRequest();
         cvRequest.setCv(response.getBody());
         log.info(response.getBody());
