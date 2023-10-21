@@ -9,6 +9,7 @@ com\smarthire\project\model\entity\Result$ResultBuilder.class
 com\smarthire\project\mapper\CandidateMapper.class
 com\smarthire\project\model\dto\ExceptionResponse$ExceptionResponseBuilder.class
 com\smarthire\project\model\dto\Search\SearchByRecruiterResponse$SearchByRecruiterResponseBuilder.class
+com\smarthire\project\model\dto\Cv\CvCandidateResponse$CvCandidateResponseBuilder.class
 com\smarthire\project\service\ResultService\ResultService.class
 com\smarthire\project\service\QuestionService\QuestionService.class
 com\smarthire\project\mapper\QuestionMapperImpl.class
@@ -40,6 +41,7 @@ com\smarthire\project\model\entity\ConfirmationToken$ConfirmationTokenBuilder.cl
 com\smarthire\project\service\CandidateService\CandidateServiceImpl.class
 com\smarthire\project\mapper\SearchMapper.class
 com\smarthire\project\exception\QuestionNotFoundException.class
+com\smarthire\project\model\dto\Cv\CvCandidateResponse.class
 com\smarthire\project\model\dto\Recruiter\RecruiterUpdateRequest.class
 com\smarthire\project\model\dto\Result\ResultResponse$ResultResponseBuilder.class
 com\smarthire\project\model\entity\Attachment$AttachmentBuilder.class

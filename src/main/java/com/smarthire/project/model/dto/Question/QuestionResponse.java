@@ -11,6 +11,5 @@ public class QuestionResponse {
     private long id;
 
     private String name;
-    private String type;
-    private String picture;
+    private Integer time;
 }

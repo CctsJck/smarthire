@@ -13,9 +13,8 @@ public class QuestionRequest {
 
     @NotBlank(message = "Ingrese la pregunta!(titulo)")
     private String name;
-    @NotBlank(message = "Ingrese el tipo de pregunta")
-    private String type;
-    private String picture;
+    @NotBlank(message = "Ingrese el tiempo para responder")
+    private Integer time;
 
     @NotBlank(message = "id de la busqueda necesario")
     private long idSearch;

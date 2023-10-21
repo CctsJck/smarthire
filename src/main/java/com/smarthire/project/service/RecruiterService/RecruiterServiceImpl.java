@@ -66,7 +66,8 @@ public class RecruiterServiceImpl implements RecruiterService{
 
             emailService.sendEmail(recruiter.getEmail(),"Confirme su dirección de correo electronico",
                     "Haga click en el siguiente link para confirmar su mail: " +
-                            "http://localhost:5000/recruiter/confirmation/"+confirmationToken.getConfirmationToken()
+                            //"http://localhost:5000/recruiter/confirmation/"+confirmationToken.getConfirmationToken()
+                    "http://localhost:5173/createaccount/enable"
                     );
 
 

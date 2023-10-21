@@ -17,8 +17,7 @@ public class Question {
     private long id;
 
     private String name;
-    private String type;
-    private String picture;
+    private Integer time;
 
     @ManyToOne
     @JoinColumn(name = "search_id")
