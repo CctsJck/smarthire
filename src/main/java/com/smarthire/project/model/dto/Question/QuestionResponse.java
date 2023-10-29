@@ -12,4 +12,5 @@ public class QuestionResponse {
 
     private String name;
     private Integer time;
+    private String type;
 }

@@ -18,6 +18,7 @@ public class Question {
 
     private String name;
     private Integer time;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "search_id")

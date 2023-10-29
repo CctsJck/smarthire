@@ -12,14 +12,14 @@ import java.util.*;
 public class TokenUtils {
 
     private final static String ACCESS_TOKEN_SECRET = "qf4243omf234mfdmfmi2i34fmdm3imdmwif4";
-    private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
+    private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 3600L;
 
-    public static String createToken(String name, String email){
+    public static String createToken(Long id, String email){
          long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
          Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 
          Map<String, Object> extra = new HashMap<>();
-         extra.put("name", name);
+         extra.put("id", id);
          return Jwts.builder()
                  .setSubject(email)
                  .setExpiration(expirationDate)
