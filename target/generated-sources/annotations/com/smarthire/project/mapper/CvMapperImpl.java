@@ -7,8 +7,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-17T16:34:29-0300",
-    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
+    date = "2023-10-28T11:33:40-0300",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
 public class CvMapperImpl implements CvMapper {
 

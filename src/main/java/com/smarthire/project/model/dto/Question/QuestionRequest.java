@@ -16,6 +16,8 @@ public class QuestionRequest {
     @NotBlank(message = "Ingrese el tiempo para responder")
     private Integer time;
 
+    private String type;
+
     @NotBlank(message = "id de la busqueda necesario")
     private long idSearch;
 }

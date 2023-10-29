@@ -17,4 +17,5 @@ public class QuestionUpdateRequest {
     private String name;
     @NotBlank(message = "Ingrese el tiempo para responder")
     private Integer time;
+    private String type;
 }

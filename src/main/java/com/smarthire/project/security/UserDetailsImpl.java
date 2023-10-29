@@ -29,6 +29,7 @@ public class UserDetailsImpl implements UserDetails {
         return recruiter.getEmail();
     }
 
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -53,6 +54,9 @@ public class UserDetailsImpl implements UserDetails {
         return recruiter.getName();
     }
 
+    public Long getId(){
+        return recruiter.getId();
+    }
 
 
 }

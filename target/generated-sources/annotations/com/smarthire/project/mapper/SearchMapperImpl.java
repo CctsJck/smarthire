@@ -15,8 +15,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-17T16:34:29-0300",
-    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
+    date = "2023-10-28T11:33:40-0300",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
 public class SearchMapperImpl implements SearchMapper {
 
@@ -107,6 +107,7 @@ public class SearchMapperImpl implements SearchMapper {
 
         question.name( questionRequest.getName() );
         question.time( questionRequest.getTime() );
+        question.type( questionRequest.getType() );
 
         return question.build();
     }
@@ -134,6 +135,7 @@ public class SearchMapperImpl implements SearchMapper {
         questionResponse.id( question.getId() );
         questionResponse.name( question.getName() );
         questionResponse.time( question.getTime() );
+        questionResponse.type( question.getType() );
 
         return questionResponse.build();
     }
@@ -160,6 +162,8 @@ public class SearchMapperImpl implements SearchMapper {
 
         question.id( questionUpdateRequest.getId() );
         question.name( questionUpdateRequest.getName() );
+        question.time( questionUpdateRequest.getTime() );
+        question.type( questionUpdateRequest.getType() );
 
         return question.build();
     }
