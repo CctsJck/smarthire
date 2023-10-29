@@ -4,13 +4,14 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.PostConstruct;
 import java.security.Key;
 import java.util.*;
-
+@Slf4j
 public class TokenUtils {
     @Value("${JAVA_PRUEBA_STRING}")
     private static String ACCESS_TOKEN_SECRET;
@@ -21,6 +22,7 @@ public class TokenUtils {
 
     @PostConstruct
     public void initializeAccessTokenSecret() {
+        log.info(accessTokenSecretFromProperty);
         ACCESS_TOKEN_SECRET = accessTokenSecretFromProperty;
     }
 
