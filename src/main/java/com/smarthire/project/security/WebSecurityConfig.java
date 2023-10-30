@@ -55,6 +55,7 @@ public class WebSecurityConfig {
                 .antMatchers(POST,"/recruiter/**").permitAll()
                 .antMatchers(POST,"/recruiter/confirmation/**").permitAll()
                 //.antMatchers(GET,"/recruiter/**").permitAll()
+                .antMatchers(GET,"/search/**") .permitAll()
                 .antMatchers(POST,"/candidate/**") .permitAll()
                 .antMatchers(POST,"/result/**") .permitAll()
                 .antMatchers(POST,"/cv/**").permitAll()
