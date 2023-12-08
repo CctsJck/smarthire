@@ -67,7 +67,7 @@ public class ResultController {
             @PathVariable Long candidate,
             @PathVariable Long question,
             @RequestBody List<ResultRequest> answer){
-        String url = "http://20.75.183.253/uploadResult";
+        String url = "http://52.249.242.148/uploadResult";
 
         log.info(String.valueOf(answer.get(0).getHappy()));
 
